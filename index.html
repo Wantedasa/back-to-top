@@ -10,14 +10,17 @@
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:#0d1117; color:#e6edf3; padding:24px; text-align:center; }
   .tag { font-size:.8rem; color:#8b949e; }
   .note { font-size:.8rem; color:#6b7280; max-width:520px; }
-  
+  .box { position:relative; height:220px; overflow:auto; width:100%; max-width:420px; text-align:left; color:#8b949e; border:1px solid #30363d; border-radius:10px; padding:14px;
+    scrollbar-width:none; -ms-overflow-style:none; }
+  .box::-webkit-scrollbar { display:none; width:0; height:0; }
+  #bt { display:none; position:absolute; bottom:14px; right:14px; width:42px; height:42px; border-radius:50%; border:1px solid #2f81f7; background:#2f81f7; color:#fff; font-size:1.2rem; cursor:pointer; }
 </style>
 </head>
 <body>
-<div style="height:220px;overflow:auto;width:100%;max-width:420px;text-align:left;color:#8b949e;border:1px solid #30363d;border-radius:10px;padding:14px">Scroll down…<br><br>(imagine a long page)<br><br>keep going<br><br>almost<br><br>there<br><br>bottom.</div><button id="bt" style="display:none;position:fixed;bottom:20px;right:20px;width:46px;height:46px;border-radius:50%;border:1px solid #2f81f7;background:#2f81f7;color:#fff;font-size:1.2rem;cursor:pointer">↑</button>
+<div class="box">Scroll down…<br><br>(imagine a long page)<br><br>keep going<br><br>almost<br><br>there<br><br>bottom.<button id="bt" type="button">↑</button></div>
 <p class="note">Demo scoped to a scroll box so it works inside the iframe.</p>
 <script>
-var box=document.querySelector('div'),btn=document.getElementById('bt');box.addEventListener('scroll',function(){btn.style.display=box.scrollTop>80?'block':'none';});btn.onclick=function(){box.scrollTo({top:0,behavior:'smooth'});};
+var box=document.getElementById('bt').parentElement,btn=document.getElementById('bt');box.addEventListener('scroll',function(){btn.style.display=box.scrollTop>80?'block':'none';});btn.onclick=function(){box.scrollTo({top:0,behavior:'smooth'});};
 </script>
 </body>
 </html>
